@@ -41,6 +41,7 @@ var dir;
 var game = setInterval(update, 100);
 
 function update() {
+	
 	// Draw background
 	canvas_context.drawImage(background, 0, 0, background.width, background.height, 0, 0, canvas.width, canvas.height);
 
@@ -113,25 +114,52 @@ function update() {
 	}
 
 	snake.unshift(newHead);
+
+
 }
 
+
+var flag = false;
 function direction(event){
 	switch(event.keyCode){
-		case 37:
-			if(dir !== "RIGHT")
+		case 37:			
+			if(dir !== "RIGHT" && flag == false ) {
+
 				dir = "LEFT";
+				flag = true;
+				setTimeout(function() { reset_flag(); }, 100);
+				console.log(dir);
+			}
+			
 			break;
 		case 38:
-			if(dir !== "DOWN")
+			if(dir !== "DOWN" && flag == false){
 				dir = "UP";
+				flag = true;
+				setTimeout(function() { reset_flag(); }, 100);
+				console.log(dir);
+			}
+			
 			break;
 		case 39:
-			if(dir !== "LEFT")
+			if(dir !== "LEFT" && flag == false){
 				dir = "RIGHT";
+				flag = true;
+				setTimeout(function() { reset_flag(); }, 100);
+				console.log(dir);
+			}
 			break;
 		case 40:
-			if(dir !== "UP")
+			if(dir !== "UP" && flag == false){
 				dir = "DOWN";
+				flag = true;
+				setTimeout(function() { reset_flag(); }, 100);
+				console.log(dir);
+			}
 			break;
 	}
+}
+
+function reset_flag(){
+	flag = false;
 }
